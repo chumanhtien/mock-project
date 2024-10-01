@@ -1,0 +1,35 @@
+[CƠ BẢN]
+Ứng dụng của bạn phải có khả năng chạy:
+
+Từ bất kỳ thư mục nào trên máy tính của bạn
+Từ thiết bị ngoài: USB (phải gắn thiết bị và phân tích tệp trong USB)
+Các tùy chọn có sẵn:
+
+Xem danh sách các tệp media trong thư mục đó và tất cả các thư mục con (âm thanh và video)
+
+Phân trang, 25 tệp mỗi trang
+Danh sách phát:
+
+Danh sách các danh sách phát
+Xem một danh sách phát
+Tạo/Cập nhật/Xóa danh sách phát
+Metadata của một tệp (Taglib): [TÍNH NĂNG CHÍNH]
+
+Có sẵn từ danh sách media hoặc một danh sách phát
+Hiển thị metadata của một tệp media (hầu như bất cứ điều gì bạn có thể nghĩ đến như metadata):
+Âm thanh: Tên bài hát, Album, Nghệ sĩ, Thời gian, Thể loại, Nhà xuất bản, Năm phát hành,...
+Video: Tên, Kích thước, Thời gian, Bitrate, Codec,
+Chỉnh sửa metadata: thay đổi giá trị, thêm khóa mới,...
+Phát nhạc từ ứng dụng của bạn bằng thư viện SDL2 trên luồng khác.
+
+Phát/Tạm dừng
+Tiếp theo/Trước đó
+Tự động chuyển sang bài hát tiếp theo khi bài hát hiện tại kết thúc
+Hiển thị thời gian hiện tại và thời gian tổng
+Có thể thay đổi âm lượng của thiết bị
+
+[Kết nối với thiết bị]
+Ứng dụng nhạc của bạn phải kết nối với bo mạch S32K144 để:
+Kiểm soát âm lượng bằng ADC
+Có thể Phát, tạm dừng, dừng, chuyển tiếp, quay lại nhạc bằng cách nhấn nút.
+Hiển thị thông tin bài hát trên màn hình bo mạch khi bài hát đang phát.

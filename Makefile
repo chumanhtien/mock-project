@@ -1,6 +1,7 @@
 # Compiler and flags
 CXX = g++
-CXXFLAGS = -std=c++20 -Wall -Iinclude  # Include header files from the include directory
+CXXFLAGS = -std=c++20 -Wall -Iinclude -I/usr/include/taglib -I/usr/include/ # Include header files from the include directory
+LDFLAGS = -ltag -lSDL2 -lSDL2_mixer
 
 # Directories
 TARGET_DIR = build
@@ -37,7 +38,7 @@ check_dir:
 
 # Link object files to create the final executable
 $(TARGET): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $(EXEC) $(OBJS)
+	$(CXX) $(CXXFLAGS) -o $(EXEC) $(OBJS) $(LDFLAGS)
 
 # Rule to compile .cpp files into .o files
 $(TARGET_DIR)/%.o: $(SRC_DIR)/%.cpp

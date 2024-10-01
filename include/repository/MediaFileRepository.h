@@ -28,6 +28,10 @@ public:
 
     // Cập nhật metadata cho media file
     void updateMetadata(std::shared_ptr<MediaFile> mediaFile, const std::string& key, const std::string& value);
+
+    void getAudioMetadata(std::shared_ptr<MediaFile>& mediaFile);
+
+    // void getVideoMetadata(std::shared_ptr<MediaFile>& mediaFile);
 };
 
 #endif // MEDIAFILE_REPOSITORY_H

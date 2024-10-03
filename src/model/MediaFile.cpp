@@ -22,4 +22,11 @@ std::string MediaFile::getName() const {
 
 std::string MediaFile::getType() const {
     return type == 1 ? "audio" : "video";
+<<<<<<< HEAD
+}
+
+std::string MediaFile::getPath() const {
+    return path;
+=======
+>>>>>>> main
 }

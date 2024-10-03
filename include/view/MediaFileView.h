@@ -4,6 +4,10 @@
 #include <vector>
 #include <memory>
 #include "../model/MediaFile.h"
+<<<<<<< HEAD
+#include "../const/MediaFileFormats.h"
+=======
+>>>>>>> main
 
 class MediaFileView {
 public:
@@ -15,6 +19,15 @@ public:
 
     // Thông báo khi không có metadata
     void displayNoMetadataMessage();
+<<<<<<< HEAD
+
+    void displayPage(const std::vector<std::shared_ptr<MediaFile>>& mediaFiles, uint currentPage, uint itemsPerPage);
+    char getUserCommand(); // Nhận lệnh từ người dùng
+
+private:
+    void printOptions();
+=======
+>>>>>>> main
 };
 
 #endif  // MEDIAFILEVIEW_H

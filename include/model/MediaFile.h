@@ -20,10 +20,7 @@ public:
     std::string getName() const;
     std::shared_ptr<Metadata> getMetadata();
     std::string getType() const;
-<<<<<<< HEAD
     std::string getPath() const;
-=======
->>>>>>> main
 };
 
 #endif

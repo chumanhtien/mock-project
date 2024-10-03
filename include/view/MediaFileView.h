@@ -4,6 +4,7 @@
 #include <vector>
 #include <memory>
 #include "../model/MediaFile.h"
+#include "../const/MediaFileFormats.h"
 
 class MediaFileView {
 public:

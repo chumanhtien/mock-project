@@ -57,13 +57,12 @@ void MediaFileController::run() {
                 auto allFiles = repository.getAllFiles();
                 std::cout << allFiles.size() << "\n";
 
-                const uint itemsPerPage = 3;
                 uint currentPage = 0;
                 uint totalFiles = allFiles.size();
-                uint totalPages = (totalFiles + itemsPerPage - 1) / itemsPerPage;
+                uint totalPages = (totalFiles + ITEMS_PER_PAGE - 1) / ITEMS_PER_PAGE;
 
                 while (true) {
-                    view.displayPage(allFiles, currentPage, itemsPerPage);
+                    view.displayPage(allFiles, currentPage, ITEMS_PER_PAGE);
 
                     char command = view.getUserCommand();
                     if (command == 'n' && currentPage < totalPages - 1) {
@@ -88,14 +87,13 @@ void MediaFileController::run() {
                 auto foundFiles = repository.searchMediaFiles(keySearch);
                 uint totalFoundFiles = foundFiles.size();
                 uint currentPage = 0;
-                const uint itemsPerPage = 3;
-                uint totalPages = (totalFoundFiles + itemsPerPage - 1) / itemsPerPage;
+                uint totalPages = (totalFoundFiles + ITEMS_PER_PAGE - 1) / ITEMS_PER_PAGE;
 
                 if (totalFoundFiles == 0) {
                     std::cout << "No media files found matching the keyword: " << keySearch << std::endl;
                 } else {
                     while (true) {
-                        view.displayPage(foundFiles, currentPage, itemsPerPage); // Gọi hàm displayPage
+                        view.displayPage(foundFiles, currentPage, ITEMS_PER_PAGE); // Gọi hàm displayPage
                         char command = view.getUserCommand();
                         if (command == 'n' && currentPage < totalPages - 1) {
                             currentPage++; // Chuyển đến trang tiếp theo

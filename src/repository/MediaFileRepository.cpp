@@ -113,3 +113,7 @@ std::vector<std::shared_ptr<MediaFile>> MediaFileRepository::searchMediaFiles(co
 void MediaFileRepository::updateMetadata(std::shared_ptr<MediaFile> mediaFile, const std::string& key, const std::string& value) {
     mediaFile->getMetadata()->updateMetadata(key, value);
 }
+
+std::vector<std::shared_ptr<MediaFile>> MediaFileRepository::getAllFiles() {
+    return allFiles;
+}

@@ -15,6 +15,12 @@ public:
 
     // Thông báo khi không có metadata
     void displayNoMetadataMessage();
+
+    void displayPage(const std::vector<std::shared_ptr<MediaFile>>& mediaFiles, uint currentPage, uint itemsPerPage);
+    char getUserCommand(); // Nhận lệnh từ người dùng
+
+private:
+    void printOptions();
 };
 
 #endif  // MEDIAFILEVIEW_H

@@ -31,6 +31,9 @@ public:
 
     void getAudioMetadata(std::shared_ptr<MediaFile>& mediaFile);
 
+
+    std::vector<std::shared_ptr<MediaFile>> getAllFiles();
+
     // void getVideoMetadata(std::shared_ptr<MediaFile>& mediaFile);
 };
 

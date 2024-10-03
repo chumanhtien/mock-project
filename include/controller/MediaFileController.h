@@ -22,6 +22,10 @@ public:
 
     // Cập nhật metadata của file đã chọn
     void updateMetadata(std::shared_ptr<MediaFile> mediaFile, const std::string& key, const std::string& value);
+
+    void displayPage(uint currentPage, uint pageSize);
+
+    void run();
 };
 
 #endif // MEDIAFILECONTROLLER_H

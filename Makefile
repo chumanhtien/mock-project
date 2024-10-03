@@ -1,11 +1,7 @@
 # Compiler and flags
 CXX = g++
-<<<<<<< HEAD
 CXXFLAGS = -std=c++20 -Wall -Iinclude -I/usr/include/taglib -I/usr/include/ # Include header files from the include directory
 LDFLAGS = -ltag -lSDL2 -lSDL2_mixer
-=======
-CXXFLAGS = -std=c++20 -Wall -Iinclude  # Include header files from the include directory
->>>>>>> main
 
 # Directories
 TARGET_DIR = build

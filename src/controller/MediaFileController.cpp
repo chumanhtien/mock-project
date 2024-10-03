@@ -23,6 +23,7 @@ void MediaFileController::viewMetadata(std::shared_ptr<MediaFile> mediaFile) {
 void MediaFileController::updateMetadata(std::shared_ptr<MediaFile> mediaFile, const std::string& key, const std::string& value) {
     repository.updateMetadata(mediaFile, key, value);
 }
+<<<<<<< HEAD
 
 void MediaFileController::displayPage(uint currentPage, uint pageSize) {
     // Lấy danh sách media files theo trang
@@ -120,3 +121,5 @@ void MediaFileController::run() {
     }
     
 }
+=======
+>>>>>>> main

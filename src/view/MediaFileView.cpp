@@ -15,7 +15,6 @@ void MediaFileView::displayMetadata(const std::shared_ptr<MediaFile>& file) {
 void MediaFileView::displayNoMetadataMessage() {
     std::cout << "No metadata available for this file.\n";
 }
-<<<<<<< HEAD
 
 // Hiển thị danh sách media files theo trang
 
@@ -62,5 +61,3 @@ char MediaFileView::getUserCommand() {
     std::cin >> command;
     return command;
 }
-=======
->>>>>>> main

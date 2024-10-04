@@ -1,5 +1,6 @@
 #include <iostream>
 #include "controller/MediaFileController.h"
+#include "controller/PlaylistController.h"
 
 int main() {
     MediaFileController mediaController;
@@ -10,6 +11,11 @@ int main() {
     // getline(std::cin, folderPath);
     folderPath = "/home/tiencm/Workspace/fresher_fpt/cpp/test/playlist";
     mediaController.scanFolder(folderPath);
+
+    // set controller for playlist
+    PlaylistController playlistController;
+    playlistController.setMediaFileController(mediaController);
+
 
     while (true) {
         std::cout << "============================" << std::endl;
@@ -34,12 +40,8 @@ int main() {
             }
 
             case 2: {
-                // Tìm kiếm file media
-                std::string searchKey;
-                std::cout << "Enter search keyword: ";
-                std::cin.ignore();
-                std::getline(std::cin, searchKey);
-                mediaController.viewMediaFilesByPage(1, searchKey);
+                // Playlist manager
+                playlistController.run();
                 break;
             }
 

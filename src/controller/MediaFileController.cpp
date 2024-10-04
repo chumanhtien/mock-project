@@ -120,3 +120,12 @@ void MediaFileController::run() {
     }
     
 }
+
+// getters
+MediaFileRepository& MediaFileController::getRepository() {
+    return repository;
+}
+
+MediaFileView& MediaFileController::getMediaFileView() {
+    return view;
+}

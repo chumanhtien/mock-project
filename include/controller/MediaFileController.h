@@ -26,6 +26,10 @@ public:
     void displayPage(uint currentPage, uint pageSize);
 
     void run();
+
+    //getters
+    MediaFileRepository& getRepository();
+    MediaFileView& getMediaFileView();
 };
 
 #endif // MEDIAFILECONTROLLER_H

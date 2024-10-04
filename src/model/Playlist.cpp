@@ -1,5 +1,8 @@
 #include "../../include/model/Playlist.h"
 
+Playlist::Playlist(const std::string& playlistName, const std::vector<std::weak_ptr<MediaFile>>& mediaFiles) : 
+    name(playlistName), mediaFiles(mediaFiles) {}
+
 void Playlist::addMediaFile(const std::shared_ptr<MediaFile>& mediaFile) {
     mediaFiles.push_back(mediaFile);
 }

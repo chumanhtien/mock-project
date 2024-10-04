@@ -6,10 +6,12 @@
 
 class Playlist {
 private:
-    std::vector<std::weak_ptr<MediaFile>> mediaFiles;
     std::string name;
+    std::vector<std::weak_ptr<MediaFile>> mediaFiles;
 
 public:
+    Playlist(const std::string& playlistName, const std::vector<std::weak_ptr<MediaFile>>& mediaFiles = {});
+
     void addMediaFile(const std::shared_ptr<MediaFile>& mediaFile);
     uint getMediaFileCount();
     // void addMediaFile(std::shared_ptr<MediaFile> file);

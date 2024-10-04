@@ -7,6 +7,9 @@ class PlaylistView {
 public:
     void displayPlaylist(const std::shared_ptr<Playlist>& playlist);
     void displayListPlaylists(const std::map<std::string, std::shared_ptr<Playlist>>& playlists);
+
+    void printOptions();
+    char getUserCommand(); // Nhận lệnh từ người dùng
 };
 
 #endif

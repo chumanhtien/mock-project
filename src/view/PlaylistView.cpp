@@ -36,3 +36,20 @@ void PlaylistView::displayListPlaylists(const std::map<std::string, std::shared_
         displayPlaylist(pair.second);
     }
 }
+
+// In các tùy chọn điều khiển
+void PlaylistView::printOptions() {
+    std::cout << "\nOptions: \n";
+    std::cout << "(n) Next Page\n";
+    std::cout << "(p) Previous Page\n";
+    std::cout << "(q) Quit\n";
+    std::cout << "(a) Add media file to playlist\n";
+    std::cout << "Enter your command: ";
+}
+
+// Nhận lệnh từ người dùng và truyền cho Controller
+char PlaylistView::getUserCommand() {
+    char command;
+    std::cin >> command;
+    return command;
+}

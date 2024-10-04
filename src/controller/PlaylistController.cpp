@@ -70,9 +70,11 @@ void PlaylistController::run() {
     
             case 2: {
                 std::string playlistName;
-                std::cout << "Enter the name of the new playlist: \n";
+                std::cout << "Enter the name of the new playlist: ";
+                std::cin.ignore();
                 getline(std::cin, playlistName);
                 std::cout << "List media files to add:\n";
+                std::shared_ptr<Playlist> newPlaylist = std::make_shared<Playlist>(playlistName);
 
                 // mediaController->displayPage()
                 auto allFiles = mediaController.getRepository().getAllFiles();
@@ -83,14 +85,26 @@ void PlaylistController::run() {
 
                 while (true) {
                     mediaFileView.displayPage(allFiles, currentPage, ITEMS_PER_PAGE);
+                    view.printOptions();
 
-                    char command = mediaFileView.getUserCommand();
+                    char command = view.getUserCommand();
                     if (command == 'n' && currentPage < totalPages - 1) {
                         currentPage++;
                     } else if (command == 'p' && currentPage > 0) {
                         currentPage--;
                     } else if (command == 'q') {
+                        addPlaylist(newPlaylist);
                         break;
+                    } else if (command == 'a') {
+                        std::cout << "Choose index of media files to add to your playlist: ";
+                        uint index;
+                        std::cin >> index;
+                        if (index < 0 || index >= totalFiles) {
+                            std::cout << "Invalid index. Please try again. \n";
+                        } else {
+                            newPlaylist->addMediaFile(allFiles[index]);
+                            std::cout << "Added media file to play list successfully. \n";
+                        }
                     } else {
                         std::cout << "Invalid command. Please try again.\n";
                     }

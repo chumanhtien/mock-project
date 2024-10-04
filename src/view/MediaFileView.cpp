@@ -43,7 +43,7 @@ void MediaFileView::displayPage(const std::vector<std::shared_ptr<MediaFile>>& m
     std::cout << "Page " << (currentPage + 1) << " of " << ((mediaFiles.size() + itemsPerPage - 1) / itemsPerPage) << std::endl;
 
     // In các tùy chọn điều khiển
-    printOptions();
+    // printOptions();
 }
 
 // In các tùy chọn điều khiển

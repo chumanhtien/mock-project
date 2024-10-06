@@ -16,7 +16,7 @@ void MediaFileController::viewMediaFilesByPage(int page, const std::string& sear
 }
 
 void MediaFileController::viewMetadata(std::shared_ptr<MediaFile> mediaFile) {
-    // Truyền đối tượng MediaFile thay vì Metadata
+    // Truyền đối tượshowEditViewMetadatang MediaFile thay vì Metadata
     view.displayMetadata(mediaFile);
 }
 

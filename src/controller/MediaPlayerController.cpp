@@ -3,7 +3,7 @@
 MediaPlayerController* MediaPlayerController::sControllerInstance = nullptr;
 
 MediaPlayerController::MediaPlayerController() 
-    : mIsPlaying(false), mTimePaused(0), mVolume(MIX_MAX_VOLUME), mMusic(nullptr) {
+    : mIsPlaying(false), mTimePaused(0), mVolume(0), mMusic(nullptr) {
     sControllerInstance = this;
 }
 
@@ -231,16 +231,16 @@ void MediaPlayerController::runPlaylist(std::shared_ptr<Playlist> playlist) {
                 view.clearScreen();
                 setNonCanonicalMode(true);
                 std::cout << "1. Increase volume\n2. Decrease volume\n3. Back\n";
-                uint volumeOption;
+                char volumeOption;
                 while(true) {
-                    std::cin.ignore();
+                    // std::cin.ignore();
                     std::cin >> volumeOption;
-                    if (volumeOption == 1) {
+                    if (volumeOption == '1') {
                         increaseVolume();
-                        continue;
-                    } else if (volumeOption == 2) {
+                        // continue;
+                    } else if (volumeOption == '2') {
                         decreaseVolume();
-                        continue;
+                        // continue;
                     }
                     break;
                 }
@@ -323,12 +323,12 @@ void MediaPlayerController::runListMediaFiles(std::vector<std::shared_ptr<MediaF
                 view.clearScreen();
                 setNonCanonicalMode(true);
                 std::cout << "1. Increase volume\n2. Decrease volume\n3. Back\n";
-                uint volumeOption;
+                char volumeOption;
                 std::cin >> volumeOption;
-                std::cout << "volumeOption: " << volumeOption << "\n"; 
-                if (volumeOption == 1) {
+                // std::cout << "volumeOption: " << volumeOption << "\n"; 
+                if (volumeOption == '1') {
                     increaseVolume();
-                } else if (volumeOption == 2) {
+                } else if (volumeOption == '2') {
                     decreaseVolume();
                 }
                 break;
@@ -388,6 +388,8 @@ void MediaPlayerController::run(MediaFileController mediaFileController, Playlis
                 break;
             }
         }
-        if(inputPlayOption == '3'){break;}
+        if (inputPlayOption == 3) {
+            break;
+        }
     }
 }

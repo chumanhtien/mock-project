@@ -19,7 +19,7 @@
 #include "./MediaFileController.h"
 #include "./PlaylistController.h"
 
-class MediaPlayerController{
+class MediaPlayerController {
 
     static MediaPlayerController* sControllerInstance;  
 

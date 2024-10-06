@@ -33,8 +33,8 @@ void MediaFileView::displayPage(const std::vector<std::shared_ptr<MediaFile>>& m
 
     // In thông tin của các tệp media trong trang hiện tại
     for (size_t i = start; i < end; ++i) {
-        std::cout << "Name: " << mediaFiles[i]->getName() 
-                  << " | Path: " << mediaFiles[i]->getPath() 
+        std::cout << i + 1 << ". Name: " << mediaFiles[i]->getName() 
+                  << " | Path: " << mediaFiles[i]->getPath()
                   << " | Type: " << mediaFiles[i]->getType() 
                   << std::endl;
     }
@@ -43,7 +43,7 @@ void MediaFileView::displayPage(const std::vector<std::shared_ptr<MediaFile>>& m
     std::cout << "Page " << (currentPage + 1) << " of " << ((mediaFiles.size() + itemsPerPage - 1) / itemsPerPage) << std::endl;
 
     // In các tùy chọn điều khiển
-    printOptions();
+    // printOptions();
 }
 
 // In các tùy chọn điều khiển

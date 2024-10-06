@@ -63,6 +63,7 @@ void MediaFileController::run() {
 
                 while (true) {
                     view.displayPage(allFiles, currentPage, ITEMS_PER_PAGE);
+                    view.printOptions();
 
                     char command = view.getUserCommand();
                     if (command == 'n' && currentPage < totalPages - 1) {
@@ -94,6 +95,8 @@ void MediaFileController::run() {
                 } else {
                     while (true) {
                         view.displayPage(foundFiles, currentPage, ITEMS_PER_PAGE); // Gọi hàm displayPage
+                        view.printOptions();
+
                         char command = view.getUserCommand();
                         if (command == 'n' && currentPage < totalPages - 1) {
                             currentPage++; // Chuyển đến trang tiếp theo
@@ -119,4 +122,13 @@ void MediaFileController::run() {
         }
     }
     
+}
+
+// getters
+MediaFileRepository& MediaFileController::getRepository() {
+    return repository;
+}
+
+MediaFileView& MediaFileController::getMediaFileView() {
+    return view;
 }

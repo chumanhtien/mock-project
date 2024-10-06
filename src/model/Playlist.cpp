@@ -37,3 +37,14 @@ const std::vector<std::shared_ptr<MediaFile>>& Playlist::getMediaFiles() const {
 const std::string& Playlist::getName() {
     return name;
 }
+
+std::vector<std::string> Playlist::getPathAllFiles() {
+    std::vector<std::string> pathAllFiles;
+    pathAllFiles.reserve(mediaFiles.size()); // Dự trữ trước bộ nhớ để tránh cấp phát lại nhiều lần
+    for (auto& it : mediaFiles) {
+        if (auto media = it) { // Kiểm tra nếu con trỏ yếu vẫn còn giá trị
+            pathAllFiles.push_back(media->getPath());
+        }
+    }
+    return pathAllFiles;
+}

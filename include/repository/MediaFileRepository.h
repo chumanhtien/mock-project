@@ -7,6 +7,9 @@
 #include <memory>
 #include <filesystem>
 #include "../model/MediaFile.h"
+#include <algorithm>
+#include <taglib/tag.h>
+#include <taglib/fileref.h>
 namespace fs = std::filesystem;
 
 class MediaFileRepository {

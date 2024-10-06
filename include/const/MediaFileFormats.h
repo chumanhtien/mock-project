@@ -14,4 +14,6 @@ const std::vector<std::string> VIDEO_EXTENSIONS = { ".mp4", ".mkv", ".avi", ".mo
 
 const uint ITEMS_PER_PAGE = 10;
 
+const uint AUDIO_TYPE = 1;
+
 #endif

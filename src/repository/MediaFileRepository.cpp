@@ -1,8 +1,5 @@
 #include "../../include/const/MediaFileFormats.h"
 #include "../../include/repository/MediaFileRepository.h"
-#include <algorithm>
-#include <taglib/tag.h>
-#include <taglib/fileref.h>
 
 // #include <libavformat/avformat.h>
 // #include <libavcodec/avcodec.h>

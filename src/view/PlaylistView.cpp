@@ -16,7 +16,7 @@ void PlaylistView::displayPlaylist(const std::shared_ptr<Playlist>& playlist) {
     }
 
     for (size_t i = 0; i < mediaFiles.size(); ++i) {
-        if (auto mediaFile = mediaFiles[i].lock()) {
+        if (auto mediaFile = mediaFiles[i]) {
             std::cout << i + 1 << ". " << mediaFile->getName() << " - " << mediaFile->getPath() << "\n";
         } else {
             std::cout << i + 1 << ". [Media file not available]\n";

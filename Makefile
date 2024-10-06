@@ -1,6 +1,6 @@
 # Compiler and flags
 CXX = g++
-CXXFLAGS = -std=c++20 -Wall -Iinclude -I/usr/include/taglib -I/usr/include/ # Include header files from the include directory
+CXXFLAGS = -g -std=c++20 -Wall -Iinclude -I/usr/include/taglib -I/usr/include/ # Include header files from the include directory
 LDFLAGS = -ltag -lSDL2 -lSDL2_mixer
 
 # Directories

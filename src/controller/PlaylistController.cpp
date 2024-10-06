@@ -58,6 +58,8 @@ void PlaylistController::run() {
         std::cout << "3. Update a playlist" << std::endl;
         std::cout << "4. Delete a playlist" << std::endl;
         std::cout << "5. Play a playlist" << std::endl;
+        std::cout << "6. Exit" << std::endl;
+        std::cout << "7. Add some playlist" << std::endl;
         std::cout << "============================" << std::endl;
         std::cout << "Choose an option: ";
         std::cin >> option;
@@ -102,7 +104,7 @@ void PlaylistController::run() {
                         if (index < 0 || index >= totalFiles) {
                             std::cout << "Invalid index. Please try again. \n";
                         } else {
-                            newPlaylist->addMediaFile(allFiles[index]);
+                            newPlaylist->addMediaFile(allFiles[index - 1]);
                             std::cout << "Added media file to play list successfully. \n";
                         }
                     } else {
@@ -110,6 +112,113 @@ void PlaylistController::run() {
                     }
                 }
                 break;
+            }
+
+            case 3: {
+                // update a playlist
+                std::string playlistName;
+                std::cout << "Enter the name of the playlist to update: ";
+                std::cin.ignore(); // Để bỏ qua ký tự newline từ lần nhập trước
+                getline(std::cin, playlistName);
+
+                auto playlists = repository.getListPlaylists();
+                auto it = playlists.find(playlistName);
+                
+                if (it == playlists.end()) {
+                    std::cout << "Playlist '" << playlistName << "' not found." << std::endl;
+                    break;
+                }
+
+                std::shared_ptr<Playlist> playlistToUpdate = it->second;
+                
+                while (true) {
+                    std::cout << "============================Update Playlist======================" << std::endl;
+                    std::cout << "1. Add media file" << std::endl;
+                    std::cout << "2. Delete media file" << std::endl;
+                    std::cout << "3. Finish updating" << std::endl;
+                    std::cout << "Choose an option: ";
+                    uint updateOption;
+                    std::cin >> updateOption;
+                
+                    switch (updateOption) {
+                        case 1: {
+                            // Thêm media file
+                            auto allFiles = mediaController.getRepository().getAllFiles();
+                            std::cout << "Available media files:\n";
+                            for (size_t i = 0; i < allFiles.size(); ++i) {
+                                std::cout << i << ": " << allFiles[i]->getName() << std::endl; // Giả sử có phương thức getName()
+                            }
+                            
+                            std::cout << "Choose the index of the media file to add: ";
+                            uint index;
+                            std::cin >> index;
+                            
+                            if (index < 0 || index >= allFiles.size()) {
+                                std::cout << "Invalid index. Please try again.\n";
+                            } else {
+                                playlistToUpdate->addMediaFile(allFiles[index - 1]);
+                                std::cout << "Media file added successfully.\n";
+                            }
+                            break;
+                        }
+
+                        case 2: {
+                            // Xóa media file
+                            std::cout << "Current media files in the playlist:\n";
+                            playlistToUpdate->showListMediaFiles(); // Giả sử có phương thức này để hiển thị media files
+
+                            std::cout << "Enter the index of the media file to delete: ";
+                            uint deleteIndex;
+                            std::cin >> deleteIndex;
+
+                            playlistToUpdate->deleteMediaFile(deleteIndex); // Giả sử có phương thức này
+                            std::cout << "Media file deleted successfully.\n";
+                            break;
+                        }
+                        case 3: {
+                            break;
+                        }
+                        
+                    }
+                    if (updateOption == 3) {
+                        break;
+                    }
+                }
+                break;
+            }
+
+            case 4: {
+                // Delete a playlist
+                std::string playlistName;
+                std::cout << "Enter the name of the playlist to delete: ";
+                std::cin.ignore(); // Bỏ qua ký tự newline còn lại từ lần nhập trước
+                getline(std::cin, playlistName);
+
+                // Lấy danh sách playlist hiện tại
+                auto playlists = repository.getListPlaylists();
+                auto it = playlists.find(playlistName);
+
+                if (it == playlists.end()) {
+                    std::cout << "Playlist '" << playlistName << "' not found." << std::endl;
+                } else {
+                    // Xác nhận trước khi xóa
+                    char confirmation;
+                    std::cout << "Are you sure you want to delete the playlist '" << playlistName << "'? (y/n): ";
+                    std::cin >> confirmation;
+
+                    if (confirmation == 'y' || confirmation == 'Y') {
+                        // Xóa playlist
+                        deletePlaylist(playlistName);
+                        std::cout << "Playlist '" << playlistName << "' has been deleted successfully." << std::endl;
+                    } else {
+                        std::cout << "Deletion canceled." << std::endl;
+                    }
+                }
+                break;
+            }
+
+            case 6: {
+                return;
             }
 
         }

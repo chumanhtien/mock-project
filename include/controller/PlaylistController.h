@@ -21,5 +21,6 @@ public:
     void deleteMediaFileFromPlaylist(const std::string& playlistName, uint mediaFileIndex);
     void viewPlaylist();
     void setMediaFileController(const MediaFileController& mediaFileController);
+    std::shared_ptr<Playlist> getPlaylist(std::string playlistName);
 };
 #endif

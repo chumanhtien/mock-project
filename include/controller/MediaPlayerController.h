@@ -16,6 +16,8 @@
 #include "../model/MediaFile.h"
 #include "../model/Playlist.h"
 #include "../view/MediaPlayerView.h"
+#include "./MediaFileController.h"
+#include "./PlaylistController.h"
 
 class MediaPlayerController{
 
@@ -65,6 +67,8 @@ public:
     void setNonCanonicalMode(bool = true);  // turn on/off canonical, echo
     void increaseVolume();
     void decreaseVolume();
+
+    void run(MediaFileController mediaFileController, PlaylistController playlistController);
 };
 
 #endif

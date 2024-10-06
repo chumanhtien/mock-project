@@ -30,15 +30,15 @@ void PlaylistController::viewPlaylist() {
         view.displayListPlaylists(playlists);
         
         // Optionally display specific playlist
-        std::string playlistName;
-        std::cout << "Enter the name of the playlist to view details: ";
-        std::cin >> playlistName;
-        auto it = playlists.find(playlistName);
-        if (it != playlists.end()) {
-            view.displayPlaylist(it->second);
-        } else {
-            std::cout << "Playlist '" << playlistName << "' not found." << std::endl;
-        }
+        // std::string playlistName;
+        // std::cout << "Enter the name of the playlist to view details: ";
+        // std::cin >> playlistName;
+        // auto it = playlists.find(playlistName);
+        // if (it != playlists.end()) {
+        //     view.displayPlaylist(it->second);
+        // } else {
+        //     std::cout << "Playlist '" << playlistName << "' not found." << std::endl;
+        // }
     }
 }
 // PlaylistController::PlaylistController(std::shared_ptr<MediaFileController> mediaController, PlaylistView customView, PlaylistRepository customRepository) :
@@ -48,6 +48,9 @@ void PlaylistController::setMediaFileController(const MediaFileController& media
 }
 
 // void getMediaController 
+std::shared_ptr<Playlist> PlaylistController::getPlaylist(std::string playlistName) {
+    return repository.getPlaylist(playlistName);
+}
 
 void PlaylistController::run() {
     uint option;
@@ -57,9 +60,7 @@ void PlaylistController::run() {
         std::cout << "2. Create a playlist" << std::endl;
         std::cout << "3. Update a playlist" << std::endl;
         std::cout << "4. Delete a playlist" << std::endl;
-        std::cout << "5. Play a playlist" << std::endl;
-        std::cout << "6. Exit" << std::endl;
-        std::cout << "7. Add some playlist" << std::endl;
+        std::cout << "5. Exit" << std::endl;
         std::cout << "============================" << std::endl;
         std::cout << "Choose an option: ";
         std::cin >> option;
@@ -217,10 +218,9 @@ void PlaylistController::run() {
                 break;
             }
 
-            case 6: {
+            case 5: {
                 return;
             }
-
         }
     }
 }

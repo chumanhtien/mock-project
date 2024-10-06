@@ -116,7 +116,7 @@ void MediaPlayerController::setNonCanonicalMode(bool enable) {
 
 void MediaPlayerController::increaseVolume() {
     mVolume += 10;
-    if (mVolume > 128) mVolume = 128;
+    // if (mVolume > 128) mVolume = 128;
     Mix_VolumeMusic(mVolume);
 }
 
@@ -178,11 +178,11 @@ void MediaPlayerController::runPlaylist(std::shared_ptr<Playlist> playlist) {
     
     while (true) {
         setNonCanonicalMode(false);
-        char option;
+        uint option;
         view.showOptionPlayMusic();
         std::cin >> option;
         switch (option) {
-            case '1': {
+            case 1: {
                 view.clearScreen();
                 if (!mIsPlaying) {
                     play(*mCurrentTrack);
@@ -193,7 +193,7 @@ void MediaPlayerController::runPlaylist(std::shared_ptr<Playlist> playlist) {
                 }
                 break;
             }
-            case '2': {
+            case 2: {
                 view.clearScreen();
                 if (mIsPlaying) {
                     pause();
@@ -202,7 +202,7 @@ void MediaPlayerController::runPlaylist(std::shared_ptr<Playlist> playlist) {
                 }
                 break;
             }
-            case '3': {
+            case 3: {
                 view.clearScreen();
                 if (!mIsPlaying) {
                     resume();
@@ -213,34 +213,39 @@ void MediaPlayerController::runPlaylist(std::shared_ptr<Playlist> playlist) {
                 }
                 break;
             }
-            case '4': {
+            case 4: {
                 view.clearScreen();
                 nextTrack();
                 std::thread playMusic(&MediaPlayerController::showTimeInRealTime, this);
                 playMusic.detach();
                 break;
             }
-            case '5': {
+            case 5: {
                 view.clearScreen();
                 previousTrack();
                 std::thread playMusic(&MediaPlayerController::showTimeInRealTime, this);
                 playMusic.detach();
                 break;
             }
-            case '6': {
+            case 6: {
                 view.clearScreen();
                 setNonCanonicalMode(true);
                 std::cout << "1. Increase volume\n2. Decrease volume\n3. Back\n";
-                char volumeOption;
-                std::cin >> volumeOption;
-                if (volumeOption == '1') {
-                    increaseVolume();
-                } else if (volumeOption == '2') {
-                    decreaseVolume();
+                uint volumeOption;
+                while(true) {
+                    std::cin.ignore();
+                    std::cin >> volumeOption;
+                    if (volumeOption == 1) {
+                        increaseVolume();
+                        continue;
+                    } else if (volumeOption == 2) {
+                        decreaseVolume();
+                        continue;
+                    }
+                    break;
                 }
-                break;
             }
-            case '7': {
+            case 7: {
                 end();
                 std::cout << "Stopping music...\n";
                 return;
@@ -263,5 +268,126 @@ void MediaPlayerController::runListMediaFiles(std::vector<std::shared_ptr<MediaF
     mCurrentTrack = mListToPlay.begin();
 
     // Run the playlist logic (similar to runPlaylist)
-    runPlaylist(nullptr);  // Playlist logic can handle it
+    while (true) {
+        setNonCanonicalMode(false);
+        uint option;
+        view.showOptionPlayMusic();
+        std::cin >> option;
+        switch (option) {
+            case 1: {
+                view.clearScreen();
+                if (!mIsPlaying) {
+                    play(*mCurrentTrack);
+                    std::thread playMusic(&MediaPlayerController::showTimeInRealTime, this);
+                    playMusic.detach();
+                } else {
+                    std::cout << "Music is already playing.\n";
+                }
+                break;
+            }
+            case 2: {
+                view.clearScreen();
+                if (mIsPlaying) {
+                    pause();
+                } else {
+                    std::cout << "Music is not playing.\n";
+                }
+                break;
+            }
+            case 3: {
+                view.clearScreen();
+                if (!mIsPlaying) {
+                    resume();
+                    std::thread playMusic(&MediaPlayerController::showTimeInRealTime, this);
+                    playMusic.detach();
+                } else {
+                    std::cout << "Music is already playing.\n";
+                }
+                break;
+            }
+            case 4: {
+                view.clearScreen();
+                nextTrack();
+                std::thread playMusic(&MediaPlayerController::showTimeInRealTime, this);
+                playMusic.detach();
+                break;
+            }
+            case 5: {
+                view.clearScreen();
+                previousTrack();
+                std::thread playMusic(&MediaPlayerController::showTimeInRealTime, this);
+                playMusic.detach();
+                break;
+            }
+            case 6: {
+                view.clearScreen();
+                setNonCanonicalMode(true);
+                std::cout << "1. Increase volume\n2. Decrease volume\n3. Back\n";
+                uint volumeOption;
+                std::cin >> volumeOption;
+                std::cout << "volumeOption: " << volumeOption << "\n"; 
+                if (volumeOption == 1) {
+                    increaseVolume();
+                } else if (volumeOption == 2) {
+                    decreaseVolume();
+                }
+                break;
+            }
+            case 7: {
+                end();
+                std::cout << "Stopping music...\n";
+                return;
+            }
+            default:
+                view.showErrorInput();
+                break;
+        }
+    }
+}
+
+void MediaPlayerController::run(MediaFileController mediaFileController, PlaylistController playlistController) {
+    while(true) {
+        view.showPlayMusic();
+        uint inputPlayOption;
+        std::cin >> inputPlayOption;
+        std::cin.ignore();
+
+        switch (inputPlayOption) {
+        //case '1': play all current media files
+            case 1: {
+                view.clearScreen();
+                runListMediaFiles(mediaFileController.getRepository().getAllFiles());
+                break;
+            }
+        //case '2': play a specific playlist by its name
+            case 2:
+            {
+                view.clearScreen();
+                playlistController.viewPlaylist();
+                std::cout<<"Enter EXACTLY the name of playlist that you want to play (or press b to back): ";
+                std::string namePlaylist;
+                std::getline(std::cin, namePlaylist);
+                if (namePlaylist == "b") {
+                    view.clearScreen();
+                    break;
+                }
+                if (playlistController.getPlaylist(namePlaylist)) {
+                    runPlaylist(playlistController.getPlaylist(namePlaylist));
+                } else {
+                    std::cout<<"NOT found any playlist name "<<namePlaylist<<std::endl;
+                }
+                view.clearScreen();
+                break;
+            }
+            case 3:{
+                view.clearScreen();
+                break;
+            }
+            default:{
+                view.showErrorInput();
+                break;
+            }
+        }
+        if(inputPlayOption == '3'){break;}
+    }
 }

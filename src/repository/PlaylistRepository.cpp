@@ -47,3 +47,11 @@ void PlaylistRepository::deleteMediaFileFromPlaylist(const std::string& playlist
 std::map<std::string, std::shared_ptr<Playlist>> PlaylistRepository::getListPlaylists() {
     return listPlaylists;
 }
+
+std::shared_ptr<Playlist> PlaylistRepository::getPlaylist(std::string playlistName) {
+    auto it = listPlaylists.find(playlistName); // Tìm playlist theo tên
+    if (it != listPlaylists.end()) { // Nếu tìm thấy
+        return it->second; // Trả về con trỏ tới Playlist
+    }
+    return nullptr; // Nếu không tìm thấy, trả về nullptr
+}

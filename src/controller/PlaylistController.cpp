@@ -28,17 +28,6 @@ void PlaylistController::viewPlaylist() {
         std::cout << "No playlists to display." << std::endl;
     } else {
         view.displayListPlaylists(playlists);
-        
-        // Optionally display specific playlist
-        // std::string playlistName;
-        // std::cout << "Enter the name of the playlist to view details: ";
-        // std::cin >> playlistName;
-        // auto it = playlists.find(playlistName);
-        // if (it != playlists.end()) {
-        //     view.displayPlaylist(it->second);
-        // } else {
-        //     std::cout << "Playlist '" << playlistName << "' not found." << std::endl;
-        // }
     }
 }
 // PlaylistController::PlaylistController(std::shared_ptr<MediaFileController> mediaController, PlaylistView customView, PlaylistRepository customRepository) :
@@ -55,12 +44,13 @@ std::shared_ptr<Playlist> PlaylistController::getPlaylist(std::string playlistNa
 void PlaylistController::run() {
     uint option;
     while (true) {
-        std::cout << "============================Browse media files======================" << std::endl;
+        std::cout << "============================ Manage playlist ======================" << std::endl;
         std::cout << "1. Show list playlist" << std::endl;
-        std::cout << "2. Create a playlist" << std::endl;
-        std::cout << "3. Update a playlist" << std::endl;
-        std::cout << "4. Delete a playlist" << std::endl;
-        std::cout << "5. Exit" << std::endl;
+        std::cout << "2. Show detail playlist" << std::endl;
+        std::cout << "3. Create a playlist" << std::endl;
+        std::cout << "4. Update a playlist" << std::endl;
+        std::cout << "5. Delete a playlist" << std::endl;
+        std::cout << "6. Exit" << std::endl;
         std::cout << "============================" << std::endl;
         std::cout << "Choose an option: ";
         std::cin >> option;
@@ -70,8 +60,22 @@ void PlaylistController::run() {
                 viewPlaylist();
                 break;
             }
-    
+
             case 2: {
+                std::string playlistName;
+                std::cout << "Enter the name of the playlist: ";
+                std::cin.ignore();
+                getline(std::cin, playlistName);
+                auto playlistFind = getPlaylist(playlistName);
+                if (playlistFind) {
+                    view.displayPlaylist(playlistFind);
+                } else {
+                    std::cout << "Playlist '" << playlistName << "' not found.\n";
+                }
+                break;
+            }
+
+            case 3: {
                 std::string playlistName;
                 std::cout << "Enter the name of the new playlist: ";
                 std::cin.ignore();
@@ -115,7 +119,7 @@ void PlaylistController::run() {
                 break;
             }
 
-            case 3: {
+            case 4: {
                 // update a playlist
                 std::string playlistName;
                 std::cout << "Enter the name of the playlist to update: ";
@@ -136,7 +140,8 @@ void PlaylistController::run() {
                     std::cout << "============================Update Playlist======================" << std::endl;
                     std::cout << "1. Add media file" << std::endl;
                     std::cout << "2. Delete media file" << std::endl;
-                    std::cout << "3. Finish updating" << std::endl;
+                    std::cout << "3. Update playlist name" << std::endl;
+                    std::cout << "4. Finish updating" << std::endl;
                     std::cout << "Choose an option: ";
                     uint updateOption;
                     std::cin >> updateOption;
@@ -177,9 +182,20 @@ void PlaylistController::run() {
                             break;
                         }
                         case 3: {
+                            // update playlist name
+                            std::string updateName;
+                            std::cout << "Input the new playlist name: "; 
+                            std::cin.ignore();
+                            std::getline(std::cin, updateName);
+                            repository.deletePlaylist(playlistToUpdate->getName());
+                            playlistToUpdate->setName(updateName);
+                            repository.addPlaylist(playlistToUpdate);
+                            std::cout << "Playlist update successfully!\n"; 
                             break;
                         }
-                        
+                        case 4: {
+                            break;
+                        }                        
                     }
                     if (updateOption == 3) {
                         break;
@@ -188,7 +204,7 @@ void PlaylistController::run() {
                 break;
             }
 
-            case 4: {
+            case 5: {
                 // Delete a playlist
                 std::string playlistName;
                 std::cout << "Enter the name of the playlist to delete: ";
@@ -218,7 +234,7 @@ void PlaylistController::run() {
                 break;
             }
 
-            case 5: {
+            case 6: {
                 return;
             }
         }

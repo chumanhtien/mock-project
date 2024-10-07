@@ -48,3 +48,7 @@ std::vector<std::string> Playlist::getPathAllFiles() {
     }
     return pathAllFiles;
 }
+
+void Playlist::setName(const std::string& updateName) {
+    name = updateName;
+}

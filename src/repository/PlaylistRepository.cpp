@@ -7,14 +7,14 @@ void PlaylistRepository::addPlaylist(std::shared_ptr<Playlist> playlist) {
         return;
     }
     listPlaylists[playlistName] = playlist;
-    std::cout << "Playlist '" << playlistName << "' added successfully.\n";
+    // std::cout << "Playlist '" << playlistName << "' added successfully.\n";
 }
 
 void PlaylistRepository::deletePlaylist(const std::string& name) {
     auto it = listPlaylists.find(name);
     if (it != listPlaylists.end()) {
         listPlaylists.erase(it);
-        std::cout << "Playlist '" << name << "' deleted successfully.\n";
+        // std::cout << "Playlist '" << name << "' deleted successfully.\n";
     } else {
         std::cout << "Playlist '" << name << "' not found.\n";
     }

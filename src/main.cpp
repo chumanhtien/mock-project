@@ -48,10 +48,6 @@ int main() {
 
         switch (choice) {
             case 1: {
-                // Xem media files theo trang
-                // int page;
-                // std::cout << "Enter page number: ";
-                // std::cin >> page;
                 mediaController.run();
                 break;
             }

@@ -1,6 +1,7 @@
 #include <iostream>
 #include "controller/MediaFileController.h"
 #include "controller/PlaylistController.h"
+#include "controller/MediaPlayerController.h"
 
 int main() {
     MediaFileController mediaController;
@@ -16,12 +17,14 @@ int main() {
     PlaylistController playlistController;
     playlistController.setMediaFileController(mediaController);
 
+    MediaPlayerController mediaPlayerController;
 
     while (true) {
         std::cout << "============================" << std::endl;
         std::cout << "1. Browse media files" << std::endl;
         std::cout << "2. Manage playlist" << std::endl;
-        std::cout << "3. Exit" << std::endl;
+        std::cout << "3. Play media files" << std::endl;
+        std::cout << "4. Exit" << std::endl;
         std::cout << "============================" << std::endl;
         std::cout << "Choose an option: ";
 
@@ -45,7 +48,11 @@ int main() {
                 break;
             }
 
-            case 3:
+            case 3: {
+                mediaPlayerController.run(mediaController, playlistController);
+            }
+
+            case 4:
                 std::cout << "Exiting program." << std::endl;
                 return 0;
 

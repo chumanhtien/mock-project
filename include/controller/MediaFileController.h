@@ -25,6 +25,8 @@ public:
 
     void displayPage(uint currentPage, uint pageSize);
 
+    void manageMetadata(std::shared_ptr<MediaFile> mediaFile);
+    
     void run();
 
     //getters

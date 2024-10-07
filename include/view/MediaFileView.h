@@ -21,6 +21,7 @@ public:
     char getUserCommand(); // Nhận lệnh từ người dùng
     
     void printOptions();
+    void printManageMetadataOptions();
 };
 
 #endif  // MEDIAFILEVIEW_H

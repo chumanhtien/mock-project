@@ -14,5 +14,6 @@ public:
     void addMediaFileToPlaylist(const std::string& playlistName, std::shared_ptr<MediaFile> mediaFile);
     void deleteMediaFileFromPlaylist(const std::string& playlistName, uint mediaFileIndex);
     std::map<std::string, std::shared_ptr<Playlist>> getListPlaylists();
+    std::shared_ptr<Playlist> getPlaylist(std::string playlistName);
 };
 #endif

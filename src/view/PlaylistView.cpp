@@ -24,18 +24,20 @@ void PlaylistView::displayPlaylist(const std::shared_ptr<Playlist>& playlist) {
     }
 }
 
-void PlaylistView::displayListPlaylists(const std::map<std::string, std::shared_ptr<Playlist>> & playlists) {
-    if (playlists.empty()) {
-        std::cout << "No playlists available.\n";
-        return;
-    }
+    void PlaylistView::displayListPlaylists(const std::map<std::string, std::shared_ptr<Playlist>> & playlists) {
+        if (playlists.empty()) {
+            std::cout << "No playlists available.\n";
+            return;
+        }
 
-    std::cout << "Available Playlists:\n";
-    for (const auto& pair : playlists) {
-        std::cout << "- " << pair.first << "\n";
-        displayPlaylist(pair.second);
+        std::cout << "Available Playlists:\n";
+        int index = 1;
+        for (const auto& pair : playlists) {
+            std::cout << index << " - " << pair.first << "\n";
+            // displayPlaylist(pair.second);
+            index++;
+        }
     }
-}
 
 // In các tùy chọn điều khiển
 void PlaylistView::printOptions() {

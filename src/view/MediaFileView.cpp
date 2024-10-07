@@ -55,6 +55,15 @@ void MediaFileView::printOptions() {
     std::cout << "Enter your command: ";
 }
 
+void MediaFileView::printManageMetadataOptions() {
+    std::cout << "\nOptions:" << std::endl;
+    std::cout << "(n) Next Page" << std::endl;
+    std::cout << "(p) Previous Page" << std::endl;
+    std::cout << "(q) Quit" << std::endl;
+    std::cout << "(m) Choose file index to manage metadata: " << std::endl;
+    std::cout << "Enter your command: ";
+}
+
 // Nhận lệnh từ người dùng và truyền cho Controller
 char MediaFileView::getUserCommand() {
     char command;

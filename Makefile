@@ -50,7 +50,7 @@ run:
 
 # Clean up object files and the executable
 clean:
-	$(RM) $(TARGET_DIR)/*.o $(TARGET)
+	$(RM) -r $(TARGET_DIR)
 
 # Phony targets to avoid conflicts with files named "clean" or "all"
 .PHONY: all clean run check_dir

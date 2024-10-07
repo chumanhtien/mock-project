@@ -1,4 +1,6 @@
 #include <iostream>
+#include <unistd.h>
+#include <limits.h>
 #include "controller/MediaFileController.h"
 #include "controller/PlaylistController.h"
 #include "controller/MediaPlayerController.h"
@@ -8,10 +10,22 @@ int main() {
     std::string folderPath;
 
     // Automatically prompt for folder path at the beginning
-    // std::cout << "Enter folder path to scan: ";
-    // getline(std::cin, folderPath);
-    folderPath = "/home/tiencm/Workspace/fresher_fpt/cpp/test/playlist";
-    mediaController.scanFolder(folderPath);
+    // folderPath = "/home/tiencm/Workspace/fresher_fpt/cpp/test/playlist";
+    // // folderPath = "/media/tiencm/66F2-E02C";
+    // mediaController.scanFolder(folderPath);
+    // Lấy thư mục hiện tại
+    char currentPath[PATH_MAX];
+    if (getcwd(currentPath, sizeof(currentPath)) != NULL) {
+        folderPath = std::string(currentPath);
+        std::cout << "Folderpath: " << folderPath;
+        mediaController.scanFolder(folderPath);
+    } else {
+        std::cerr << "Error getting current directory." << std::endl;
+        return 1;
+    }
+
+    // In ra đường dẫn thư mục hiện tại (chỉ để kiểm tra)
+    // std::cout << "Current folder path: " << folderPath << std::endl;
 
     // set controller for playlist
     PlaylistController playlistController;

@@ -3,11 +3,11 @@
     //********************* PLAY MUSIC MENU ***********************/
 void MediaPlayerView::showPlayMusic(){
     std::cout<<"\n=================== PLAY MUSIC ===================\n";
-    std::cout<<"1. Play music all current media files\n";
-    std::cout<<"2. Play music from a specific playlist\n";
+    std::cout<<"1. Play all current media files\n";
+    std::cout<<"2. Play music from a playlist\n";
     std::cout<<"3. Back\n";
     std::cout<<"====================================================\n";
-    std::cout<<"Enter your option: ";
+    std::cout<<"Choose option: ";
 }
 
 void MediaPlayerView::showOptionPlayMusic(){
@@ -20,7 +20,7 @@ void MediaPlayerView::showOptionPlayMusic(){
     std::cout<<"6. Change volume\n";
     std::cout<<"7. Stop and exit\n";
     std::cout<<"====================================================\n";
-    std::cout<<"Current play time: 00:00 / 00:00   ||   Enter your option: ";
+    std::cout<<"Play time: 00:00 / 00:00   ||   Choose option: ";
 }
 
 /************************************** OTHER FEATURES *****************************************/

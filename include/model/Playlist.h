@@ -20,7 +20,5 @@ public:
     const std::vector<std::shared_ptr<MediaFile>>& getMediaFiles() const;
     const std::string& getName();
     void setName(const std::string& updateName);
-    
-    std::vector<std::string> getPathAllFiles();
 };
 #endif
